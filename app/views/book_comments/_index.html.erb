@@ -1,0 +1,22 @@
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th>Title</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% book_comments.each do |comment| %>
+      <tr>
+        <td><%= attachment_image_tag(comment.user, :profile_image, :fill, 10,10, fallback: "no_image.jpg") %></td>
+        <td><%= comment.user.name %></td>
+        <td><%= comment.comment%></td>
+        <td>
+          <% if comment.user == current_user %>
+          <%= link_to 'Destroy',book_book_comment_path(comment.book, comment), method: :delete %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
